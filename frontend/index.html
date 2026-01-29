@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Learning Assistant</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app">
+        <header>
+            <h1>📚 RAG Learning Assistant</h1>
+            <span id="status" class="status">Waiting for document...</span>
+        </header>
+
+        <!-- Upload Section -->
+        <section id="uploadSection" class="upload-section">
+            <div class="upload-box" id="dropzone">
+                <input type="file" id="fileInput" accept=".pdf" hidden>
+                <div class="upload-content">
+                    <span class="upload-icon">📄</span>
+                    <p>Drag & Drop your PDF here or <button id="browseBtn">Browse Files</button></p>
+                </div>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div id="progress" class="progress">
+                <div class="progress-bar-bg">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+                <div id="progressText" class="progress-text">Starting upload...</div>
+            </div>
+        </section>
+
+        <!-- Chat Section -->
+        <section id="chatSection" class="chat-section" hidden>
+            <div class="doc-bar">
+                <span id="docName" class="doc-name">📄 Document.pdf</span>
+                <button id="newBtn">Upload New</button>
+            </div>
+
+            <div id="messages" class="messages"></div>
+
+            <div class="input-area">
+                <textarea id="input" placeholder="Ask a question about your document..." rows="1"></textarea>
+                <button id="sendBtn" disabled>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+
+</html>
