@@ -53,6 +53,42 @@ Open **http://localhost:8000** in your browser!
 
 *(Add screenshots of your UI here)*
 
+## 🌐 Free Deployment (Render.com)
+
+Deploy your own instance completely **FREE**!
+
+### One-Click Deploy to Render
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/adithya11sci/rag_based_learning)
+
+### Manual Deploy Steps
+
+1. **Create a Render Account**: Go to [render.com](https://render.com) and sign up for free
+
+2. **Create a New Web Service**:
+   - Click "New +" → "Web Service"
+   - Connect your GitHub account
+   - Select the `rag_based_learning` repository
+
+3. **Configure the Service**:
+   | Setting | Value |
+   |---------|-------|
+   | Name | `rag-learning-assistant` |
+   | Environment | `Python 3` |
+   | Build Command | `pip install -r requirements.txt` |
+   | Start Command | `uvicorn backend.main:app --host 0.0.0.0 --port $PORT` |
+   | Instance Type | `Free` |
+
+4. **Add Environment Variable**:
+   - Key: `GROQ_API_KEY`
+   - Value: Your Groq API key (get free at [console.groq.com](https://console.groq.com))
+
+5. **Deploy!** Click "Create Web Service" and wait ~2-3 minutes
+
+Your app will be live at: `https://rag-learning-assistant.onrender.com`
+
+> ⚠️ **Note**: Free tier may sleep after 15 mins of inactivity (first request takes ~30s to wake up)
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to open issues or submit PRs.

@@ -1,3 +1,6 @@
+// API URL - automatically uses current origin (works for both local and deployed)
+const API_URL = window.location.origin;
+
 const $ = id => document.getElementById(id);
 let processing = false;
 
