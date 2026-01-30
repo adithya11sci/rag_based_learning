@@ -48,11 +48,11 @@ class RAGEngine:
         if not self.vector_store.is_initialized:
             return {"success": False, "answer": "Please upload a PDF first."}
             
-        results = self.vector_store.search(query, top_k=3)  # Reduced from 5 to 3 to save tokens
+        results = self.vector_store.search(query, top_k=5)
         
         # If no results but we have documents, use available content
         if not results and self.vector_store.get_count() > 0:
-            all_docs = self.vector_store.documents[:2]
+            all_docs = self.vector_store.documents[:3]
             results = [{"text": d['text'], "score": 0.1} for d in all_docs]
             
         if not results:
@@ -71,15 +71,14 @@ class RAGEngine:
             return {"success": False, "answer": "Groq API key missing."}
             
         try:
-            # Using smaller 8B model to save tokens (still very capable!)
             response = self.groq.chat.completions.create(
-                model="llama-3.1-8b-instant",  # Faster & uses fewer tokens
+                model="llama-3.3-70b-versatile",
                 messages=[
-                    {"role": "system", "content": "Answer concisely based on the context. Be helpful but brief."},
-                    {"role": "user", "content": f"Context:\n{context_text}\n\nQ: {query}"}
+                    {"role": "system", "content": "You are a helpful assistant. Answer based only on the provided context."},
+                    {"role": "user", "content": f"Context:\n{context_text}\n\nQuestion: {query}"}
                 ],
-                temperature=0.2,
-                max_tokens=512  # Reduced from 1024 to save tokens
+                temperature=0.3,
+                max_tokens=1024
             )
             answer = response.choices[0].message.content
             
