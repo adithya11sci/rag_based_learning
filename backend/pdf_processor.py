@@ -4,7 +4,7 @@ from PyPDF2 import PdfReader
 
 
 class PDFProcessor:
-    def __init__(self, chunk_size=500, chunk_overlap=50):
+    def __init__(self, chunk_size=300, chunk_overlap=50):
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
     

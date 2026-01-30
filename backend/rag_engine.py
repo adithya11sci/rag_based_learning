@@ -38,10 +38,17 @@ class RAGEngine:
             return {"success": False, "answer": "Please upload a PDF first."}
             
         results = self.vector_store.search(query, top_k=5)
-        if not results:
-            return {"success": False, "answer": "No relevant info found."}
+        
+        # If no results but we have documents, use all available content
+        if not results and self.vector_store.get_count() > 0:
+            # Fallback: use first chunk
+            all_docs = self.vector_store.documents[:3]
+            results = [{"text": d['text'], "score": 0.1} for d in all_docs]
             
-        context_text = "\n\n".join([f"[Relevance: {r['score']:.2f}]\n{r['text']}" for r in results])
+        if not results:
+            return {"success": False, "answer": "No content available. Please upload a PDF."}
+            
+        context_text = "\n\n".join([f"{r['text']}" for r in results])
         
         if not self.groq:
             return {"success": False, "answer": "Groq API key missing."}

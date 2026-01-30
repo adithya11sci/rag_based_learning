@@ -21,12 +21,15 @@ class VectorStore:
         print(f"Indexed {len(documents)} chunks")
 
     def search(self, query, top_k=5):
-        """Jaccard similarity search"""
+        """Jaccard similarity search with fallback"""
         if not self.is_initialized:
             return []
             
         query_tokens = self.tokenize(query)
         if not query_tokens:
+            # If query has no tokens, return first chunk
+            if self.documents:
+                return [{"text": self.documents[0]['text'], "score": 0.1}]
             return []
             
         scores = []
@@ -35,12 +38,19 @@ class VectorStore:
             intersection = len(query_tokens & doc_tokens)
             union = len(query_tokens | doc_tokens)
             score = intersection / union if union > 0 else 0
-            if score > 0:
-                scores.append({"text": doc['text'], "score": score})
+            scores.append({"text": doc['text'], "score": score})
         
         # Sort by score descending
         scores.sort(key=lambda x: x['score'], reverse=True)
-        return scores[:top_k]
+        
+        # Always return at least one result if we have documents
+        result = scores[:top_k]
+        if result and result[0]['score'] == 0:
+            # No good matches - still return top chunks with minimum score
+            for r in result:
+                r['score'] = 0.05  # Minimum score to indicate low relevance
+        
+        return result if result else []
 
     def clear(self):
         self.documents = []
