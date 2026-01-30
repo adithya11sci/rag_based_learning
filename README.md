@@ -99,6 +99,8 @@ This app uses automatic health checks via [cron-job.org](https://cron-job.org) t
 - **No sleep mode**: App stays active and responsive
 - **Zero cost**: Both Render and cron-job.org are free!
 
+🔗 **Live Demo**: [https://rag-based-learning.onrender.com](https://rag-based-learning.onrender.com)
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to open issues or submit PRs.
