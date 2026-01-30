@@ -53,9 +53,13 @@ Open **http://localhost:8000** in your browser!
 
 *(Add screenshots of your UI here)*
 
+## 🌐 Live Demo
+
+🚀 **Try it now**: [https://rag-based-learning.onrender.com](https://rag-based-learning.onrender.com)
+
 ## 🌐 Free Deployment (Render.com)
 
-Deploy your own instance completely **FREE**!
+Deploy your own instance completely **FREE** with **24/7 uptime**!
 
 ### One-Click Deploy to Render
 
@@ -87,7 +91,13 @@ Deploy your own instance completely **FREE**!
 
 Your app will be live at: `https://rag-learning-assistant.onrender.com`
 
-> ⚠️ **Note**: Free tier may sleep after 15 mins of inactivity (first request takes ~30s to wake up)
+### 🔄 24/7 Uptime (Free)
+
+This app uses automatic health checks via [cron-job.org](https://cron-job.org) to stay awake 24/7:
+
+- **Health endpoint**: `/api/health` is pinged every 14 minutes
+- **No sleep mode**: App stays active and responsive
+- **Zero cost**: Both Render and cron-job.org are free!
 
 ## 🤝 Contributing
 
