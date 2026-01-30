@@ -88,6 +88,10 @@ Deploy your own instance completely **FREE**!
 Your app will be live at: `https://rag-learning-assistant.onrender.com`
 
 > ⚠️ **Note**: Free tier may sleep after 15 mins of inactivity (first request takes ~30s to wake up)
+>
+> 🌐 Live Deployment URL
+
+🔗 https://rag-based-learning.onrender.com
 
 ## 🤝 Contributing
 
